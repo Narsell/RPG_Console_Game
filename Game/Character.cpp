@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "Map.h"
 #include "Random.h"
+#include <cmath>
 
 
 using namespace std;
@@ -140,17 +141,21 @@ void character::rest()
 
 void character::save(std::ofstream&File)
 {
+	File.open("Data.txt");//Creating save file
 
 	File << mName << endl;
 	File << playerWeapon.wName << endl;
 	File << playerWeapon.wRange.Rlow << endl;
 	File << playerWeapon.wRange.RHigh << endl;
-	File <<  mLevel << endl;
-	File <<  mExp << endl;
-	File <<  mExpNextLvl << endl;
-	File <<  mMaxHealth << endl;
+	File << mLevel << endl;
+	File << mExp << endl;
+	File << mExpNextLvl << endl;
+	File << mMaxHealth << endl;
+	File << mMaxHealth << endl;
 	File << mArmor << endl;
 
+	File.close();
+	
 }
 
 void character::load(std::ifstream &File)
@@ -158,29 +163,25 @@ void character::load(std::ifstream &File)
 										//Not reading mName, see checkData implementation (line 171)
 	getline(File, playerWeapon.wName);
 	File >> playerWeapon.wRange.Rlow;
-	File >>	playerWeapon.wRange.RHigh;
+	File >> playerWeapon.wRange.RHigh;
 	File >> mLevel;
 	File >> mExp;
 	File >> mExpNextLvl;
-	File >> mHealth;
+	File >> mHealth;			//Player will start full health
+	File >> mMaxHealth;		
 	File >> mArmor;
+
+	File.close();
 
 
 }
 
 bool character::checkData(std::ifstream & File)
 {
-	std::string check; 
+	std::string check;
 	getline(File, check);
-	if (check.empty())
-
-		return true;
-
-	else
-	{
-		mName = check;			//If Data file its not empty, string stored on 'check' must be assigned to mName right here or i'll get lost once this func. terminates.
-		return false;
-	}
+	mName = check;
+	return check.empty();
 }
 
 //COMBAT IMPLEMETATIONS:
@@ -188,11 +189,8 @@ bool character::checkData(std::ifstream & File)
 bool character::mIsDead()
 {
 
-	if (mHealth <= 0)
-		return true;
-	else
-		return false;
-	
+	return (mHealth <= 0);
+
 }
 
 
@@ -268,12 +266,32 @@ void character::experience(mob & mob)
 
 void character::levelUp()
 {
-	mLevel++;
-	mExpNextLvl *= 2;   //Double the experience evertime
 	system("cls");
-	cout << "\t\tCONGRATULATIONS, YOU HAVE LEVELED UP!" << endl << "You're now level " << mLevel << endl;
+	cout << "\t\tCONGRATULATIONS, YOU HAVE LEVELED UP!" << endl << "You're now level " << mLevel + 1 << endl;
 	system("pause");
-	
+	increaseStats();  
+
+}
+
+void character::increaseStats()
+{
+
+	mLevel++;
+	mExpNextLvl = pow(mExpNextLvl, 1.1);
+	playerWeapon.wRange.Rlow += Random(1, 5);
+	playerWeapon.wRange.RHigh += Random(1, 5);
+	mMaxHealth += Random(50, 85);
+	mArmor += Random(1, 3);
+
+	mHealth = mMaxHealth; // Returns Health to new max.
+
+	system("cls");
+	cout << endl << "STATS INCREASED!" << endl << endl;
+	cout << "Weapon Range: " << playerWeapon.wRange.Rlow << ", " << playerWeapon.wRange.RHigh << endl;
+	cout << "Maximum Health: " << mMaxHealth << endl;
+	cout << "Armor: " << mArmor << endl;
+	system("pause");
+
 
 }
 
