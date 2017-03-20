@@ -31,6 +31,7 @@ public:
 	bool playerAttack(mob&mob);  //Returns true if attempt to run rolls true
 	void experience(mob&mob);
 	void levelUp();
+	void increaseStats();
 
 	//Accesors
 
