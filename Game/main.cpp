@@ -29,14 +29,15 @@ int main()
 
 
 	if (player.checkData(inData))	//Checking if data file is empty
-	{
-		outData.open("Data.txt");//Creating save file
+	
 		player.createClass(); //Function that initializes character creation.
-	}
 
 	else
+	{
 		player.load(inData);
-
+		
+	}
+	
 
 	while (gameLoop) //Game loop
 
@@ -92,9 +93,11 @@ int main()
 					if (player.mIsDead())				//Checks if last mob's attack killed the player
 					{
 						system("cls");
-						cout << "YOU DED, NOOB" << endl;			//Game Over bois.
+						cout << "\t\tYOU DED" << endl;	//Game Over bois.
+						player.save(outData);			//Saves players progress.	
 						system("pause");
-						mainInput = false;
+						gameLoop = false; 
+						break;
 					}
 					
 
@@ -116,7 +119,7 @@ int main()
 			break;
 
 		case 4:
-
+			
 			player.save(outData); //saves player's data
 			gameLoop = false;
 
