@@ -114,7 +114,8 @@ void character::showStats()
 	cout << "Current XP: " << mExp << endl;
 	cout << "XP for level " << mLevel + 1 << " : " << mExpNextLvl << endl;
 	cout << "Health: " << mHealth <<"/" << mMaxHealth << endl;
-	cout << "Armor: " << mArmor << endl << endl << endl;
+	cout << "Armor: " << mArmor << endl;
+	cout << "Enemies Encountered: " << mob::GetMobCount() << endl << endl;
 	system("pause");
 
 }

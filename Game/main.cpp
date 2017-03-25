@@ -20,8 +20,6 @@ int main()
 	mob* Monster = 0;  //Initialize pointer to null for the sake of clarity.
 	ofstream outData;
 	ifstream inData("Data.txt");
-	
-	 
 
 	
 	int mainInput = 1;  // Main game menu input

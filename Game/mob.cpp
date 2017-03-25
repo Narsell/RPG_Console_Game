@@ -10,6 +10,9 @@
 
 using namespace std;
 
+
+int mob::mob_count = 0;
+
 mob::mob()
 {
 	nName = "Default";
@@ -19,7 +22,7 @@ mob::mob()
 	nWeapon.wRange.Rlow = 0;
 	nWeapon.wRange.RHigh =0;
 	xpReward = 0;
-	
+	++mob_count;
 }
 
 mob::mob(string name, string wName, int lowR, int highR, int health, int defense, int reward)
@@ -31,9 +34,7 @@ mob::mob(string name, string wName, int lowR, int highR, int health, int defense
 	nHealth = health;
 	nArmor = defense;
 	xpReward = reward;
-	
-
-
+	++mob_count;
 }
 
 void mob::nTakeDamage(int dmg)
@@ -44,10 +45,7 @@ void mob::nTakeDamage(int dmg)
 
 bool mob::nIsDead()
 {
-	if (nHealth <= 0)
-		return true;
-	else
-		return false;
+	return (nHealth <= 0);
 
 }
 
@@ -82,4 +80,9 @@ int mob::Reward()
 std::string mob::mobName()
 {
 	return nName;
+}
+
+int mob::GetMobCount()
+{
+	return mob_count;
 }

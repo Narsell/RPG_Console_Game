@@ -32,9 +32,6 @@ public:
 	void experience(mob&mob);
 	void levelUp();
 	void increaseStats();
-
-	//Accesors
-
 	void showStats();
 	int playerHealth();
 	int playerArmor();
