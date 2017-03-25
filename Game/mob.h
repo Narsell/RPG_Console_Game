@@ -25,6 +25,7 @@ public:
 	int mobArmor();
 	int Reward();
 	std::string mobName();
+	static int GetMobCount();
 
 
 private:
@@ -35,7 +36,8 @@ private:
 	int xpReward;
 	bool nDead;
 	Weapon nWeapon;
-	
+
+	static int mob_count; //static counter for mobs created.
 	
 };
 
