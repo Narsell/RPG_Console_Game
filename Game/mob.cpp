@@ -86,3 +86,9 @@ int mob::GetMobCount()
 {
 	return mob_count;
 }
+
+void mob::inputMobCount(int savedMobCount)
+{
+	mob_count = savedMobCount;
+
+}

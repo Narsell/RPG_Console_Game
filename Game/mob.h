@@ -10,6 +10,8 @@ class character;
 
 class mob {
 
+	friend class character;
+
 public:
 
 	mob::mob();
@@ -26,6 +28,7 @@ public:
 	int Reward();
 	std::string mobName();
 	static int GetMobCount();
+	static void inputMobCount(int);
 
 
 private:

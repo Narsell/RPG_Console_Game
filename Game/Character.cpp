@@ -144,7 +144,7 @@ void character::save(std::ofstream&File)
 {
 	File.open("Data.txt");//Creating save file
 
-	File << mName << endl;
+	File << mName << endl; 
 	File << playerWeapon.wName << endl;
 	File << playerWeapon.wRange.Rlow << endl;
 	File << playerWeapon.wRange.RHigh << endl;
@@ -154,6 +154,7 @@ void character::save(std::ofstream&File)
 	File << mMaxHealth << endl;
 	File << mMaxHealth << endl;
 	File << mArmor << endl;
+	File << mob::mob_count;
 
 	File.close();
 	
@@ -171,6 +172,7 @@ void character::load(std::ifstream &File)
 	File >> mHealth;			//Player will start full health
 	File >> mMaxHealth;		
 	File >> mArmor;
+	File >> mob::mob_count;
 
 	File.close();
 
