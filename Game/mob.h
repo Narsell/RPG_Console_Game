@@ -24,12 +24,7 @@ public:
 	//DATA ACCESORS:
 
 	int mobHealth ();
-	int mobArmor();
-	int Reward();
 	std::string mobName();
-	static int GetMobCount();
-	static void inputMobCount(int);
-
 
 private:
 

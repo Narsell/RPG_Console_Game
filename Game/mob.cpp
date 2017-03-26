@@ -54,9 +54,9 @@ void mob::mobAttack(character&player)
 	int dmg, realDmg;
 	
 	dmg = Random(nWeapon.wRange.Rlow, nWeapon.wRange.RHigh);
-	realDmg = dmg-player.playerArmor();
+	realDmg = dmg - player.character::mArmor;
 	player.mTakeDamage(realDmg);
-	cout << "You've been hit with " << nWeapon.wName << " for a total of " << realDmg << " damage ( " << player.playerArmor() << " absorbed)" << endl;
+	cout << "You've been hit with " << nWeapon.wName << " for a total of " << realDmg << " damage ( " << player.character::mArmor << " absorbed)" << endl;
 	system("pause");
 	
 }
@@ -66,24 +66,10 @@ int mob::mobHealth()
 	return nHealth;
 }
 
-int mob::mobArmor()
-{
-	return nArmor;
-}
-
-int mob::Reward()
-{
-	return xpReward;
-}
-
-
 std::string mob::mobName()
 {
 	return nName;
 }
 
-int mob::GetMobCount()
-{
-	return mob_count;
-}
+
 

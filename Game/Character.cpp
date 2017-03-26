@@ -115,7 +115,7 @@ void character::showStats()
 	cout << "XP for level " << mLevel + 1 << " : " << mExpNextLvl << endl;
 	cout << "Health: " << mHealth <<"/" << mMaxHealth << endl;
 	cout << "Armor: " << mArmor << endl;
-	cout << "Enemies Encountered: " << mob::GetMobCount() << endl << endl;
+	cout << "Enemies Encountered: " << mob::mob_count << endl << endl;
 	system("pause");
 
 }
@@ -125,10 +125,11 @@ int character::playerHealth()
 	return mHealth;
 }
 
-int character::playerArmor()
+int character::playerLvl()
 {
-	return mArmor;
+	return mLevel;
 }
+
 
 void character::rest()
 {
@@ -226,10 +227,10 @@ bool character::playerAttack(mob&mob)
 		
 			int dmg, realDmg;
 			dmg = Random(playerWeapon.wRange.Rlow, playerWeapon.wRange.RHigh);
-			realDmg = dmg - mob.mobArmor();
+			realDmg = dmg - mob.mob::nArmor;
 			mob.nTakeDamage(realDmg);
 
-			cout << "You attack the " << mob.mobName() << " for a total of " << realDmg << " damage ( " << mob.mobArmor() << " absorbed)" << endl;
+			cout << "You attack the " << mob.mob::nName << " for a total of " << realDmg << " damage ( " << mob.mob::nArmor << " absorbed)" << endl;
 			system("pause");
 
 			return false;
@@ -257,7 +258,7 @@ bool character::playerAttack(mob&mob)
 
 void character::experience(mob & mob)
 {
-	int xpReward = mob.Reward(); //Gets the mob's reward for killing it
+	int xpReward = mob.mob::xpReward; //Gets the mob's reward for killing it
 
 	mExp += xpReward;
 	if (mExp >= mExpNextLvl) //Ask before calling the level up function to minimize computation.

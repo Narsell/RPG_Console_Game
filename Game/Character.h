@@ -9,6 +9,7 @@
 
 class character
 {
+	friend class mob;
 
 public:
 	
@@ -34,7 +35,7 @@ public:
 	void increaseStats();
 	void showStats();
 	int playerHealth();
-	int playerArmor();
+	int playerLvl();
 
 private:
 
