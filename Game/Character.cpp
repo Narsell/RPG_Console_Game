@@ -36,7 +36,6 @@ character::character(string Name, string pWeapon, int Rlow, int rHigh, int lvl, 
 	mArmor = armor;
 }
 
-
 void character::createClass()
 {
 	cout << endl << "=============================" << endl;
@@ -120,12 +119,10 @@ void character::showStats()
 
 }
 
-
 int character::playerLvl()
 {
 	return mLevel;
 }
-
 
 void character::rest()
 {
@@ -183,9 +180,6 @@ bool character::checkData(std::ifstream & File)
 	mName = check;
 	return check.empty();
 }
-
-
-
 
 bool character::Attack(Creature*Enemy)
 {
