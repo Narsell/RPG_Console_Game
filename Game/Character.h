@@ -38,10 +38,7 @@ private:
 	int mLevel;
 	int mExpNextLvl;
 	int mExp;
-	
 
 };
-
-
 
 #endif // !CHARACTER_H

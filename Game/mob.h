@@ -23,7 +23,7 @@ public:
 private:
 
 	int xpReward;
-	static int MOB_COUNT; //static counter for mobs created.
+	static int MOB_COUNT; 
 	
 };
 
