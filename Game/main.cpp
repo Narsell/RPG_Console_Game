@@ -10,19 +10,18 @@
 #include <fstream>
 using namespace std;
 
-void mainMenu();		//Prototypes
-bool combatLoop();
 
-map gameMap;
-character player; 
-mob* Monster = 0;  //Initialize pointer to null for the sake of clarity.
-
-ofstream outData;
-ifstream inData("Data.txt");	//saving/loading objects
 
 int main()
 {
 	srand(time(0));
+
+	map gameMap;
+	character player;
+	mob* Monster = 0;  //Initialize pointer to null for the sake of clarity.
+
+	ofstream outData;
+	ifstream inData("Data.txt");	//saving/loading objects
 
 	if (player.checkData(inData))	//Checking if data file is empty
 		player.createClass(); //Function that initializes character creation.
@@ -34,7 +33,16 @@ int main()
 	while (gameLoop) 
 
 	{
-		mainMenu(); //Displays main menu;
+		system("CLS");
+
+		cout << "HEALTH: " << player.Health() << " | POSITION: " << "(" << gameMap.getX() << "," << gameMap.getY() << ")" << " | LEVEL: " << player.playerLvl() << endl;
+
+		cout << endl << "What would you like to do? " << endl << endl;
+
+		cout << "1). Move" << endl;
+		cout << "2). Detailed Stats" << endl;
+		cout << "3). Rest" << endl;
+		cout << "4). Exit Game" << endl;
 
 		int mainInput = 1;
 		cin >> mainInput;
@@ -47,12 +55,47 @@ int main()
 			gameMap.move();
 			Monster = gameMap.getEncounter(); //Once the player finishes moving, gets a random encounter
 
-			if (Monster != 0)			//If pointer returned is != 0, proced to battle
-		
-				if (!combatLoop()) //Returns false if player dies in combat.
-					gameLoop = false;
-			
+			if (Monster != 0)	//If pointer returned is != 0, proced to battle
+			{
 
+				while (true)
+				{
+					system("cls");
+					cout << endl << "\t IN COMBAT" << endl << endl;
+					cout << " Your Health: " << player.Health() << "  |  " << Monster->Name() << "'s Health: " << Monster->Health() << endl << endl;
+					bool Run = player.Attack(Monster); //Player decides whether he runs or fights 
+
+					if (Run)
+					{										//If escaped properly, breaks the combat loop. 
+						break;						//Can only return true, otherwise main will 'think' player died.
+					}
+
+					if (Monster->IsDead())					//Checks if monster died when player attacked 
+					{
+						system("cls");
+						cout << "NICE, YOU DEFEATED THE " << Monster->Name() << endl;
+						system("Pause");
+						player.experience(*Monster);				//Increase level, victory msg
+						break;
+					}
+
+					else
+						Monster->Attack(&player);		//If monster survived, attacks 
+
+					if (player.IsDead())				//Checks if last mob's attack killed the player
+					{
+						system("cls");
+						cout << "\t\tYOU DED" << endl;	//Game Over bois.
+						system("pause");
+						player.save(outData);			//Saves players progress.	
+						gameLoop = false;
+						break;
+
+					}
+
+				}
+
+			}
 
 			break;
 
@@ -80,60 +123,6 @@ int main()
 	
   return 0;
 
-}
-
-void mainMenu()
-{
-	system("CLS");
-
-	cout << "HEALTH: " << player.playerHealth() << " | POSITION: " << "(" << gameMap.getX() << "," << gameMap.getY() << ")" << " | LEVEL: " << player.playerLvl() << endl;
-
-	cout << endl << "What would you like to do? " << endl << endl;
-
-	cout << "1). Move" << endl;
-	cout << "2). Detailed Stats" << endl;
-	cout << "3). Rest" << endl;
-	cout << "4). Exit Game" << endl;
-}
-
-bool combatLoop() 
-{
-	while (true)
-	{
-		system("cls");
-		cout << endl << "\t IN COMBAT" << endl << endl;
-		cout << " Your Health: " << player.playerHealth() << "  |  " << Monster->mobName() << "'s Health: " << Monster->mobHealth() << endl << endl;
-		bool Run = player.playerAttack(*Monster); //Player decides whether he runs or fights *MUST FINISH FUNCTION IMPLEMENTATION*
-
-		if (Run)
-		{										//If escaped properly, breaks the combat loop. 
-			return true;						//Can only return true, otherwise main will 'think' player died.
-		}
-
-		if (Monster->nIsDead())					//Checks if monster died when player attacked 
-		{
-			system("cls");
-			cout << "NICE, YOU DEFEATED THE " << Monster->mobName() << endl;
-			system("Pause");
-			player.experience(*Monster);				//Increase level, victory msg
-			return true;
-		}
-
-		else
-			Monster->mobAttack(player);		//If monster survived, attacks 
-
-		if (player.mIsDead())				//Checks if last mob's attack killed the player
-		{
-			system("cls");
-			cout << "\t\tYOU DED" << endl;	//Game Over bois.
-			player.save(outData);			//Saves players progress.	
-			system("pause");
-			return false;
-	
-		}
-
-
-	}
 }
 
 
