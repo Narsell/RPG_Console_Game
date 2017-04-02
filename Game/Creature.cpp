@@ -24,6 +24,7 @@ void Creature::Attack(Creature*Enemy)
 
 	int dmg = Random(creatureWeapon.wRange.Rlow, creatureWeapon.wRange.RHigh) - Enemy->mArmor;
 	Enemy->TakeDamage(dmg);
+	std::cout << mName << " did " << dmg << " damage to " << Enemy->mName << std::endl;
 	system("pause");
 	
 }

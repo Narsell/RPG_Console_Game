@@ -10,6 +10,7 @@ class Creature
 public:
 	
 	void TakeDamage(int);
+	void Attack(Creature*);
 
 	//Accesors
 

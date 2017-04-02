@@ -26,6 +26,7 @@ public:
 	bool checkData(std::ifstream&);		//Returns true if Data file its empty
 
 	
+	bool Attack(Creature*);					  //Returns true if attempt to run rolls true
 	void experience(mob&mob);
 	void levelUp();
 	void increaseStats();
