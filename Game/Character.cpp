@@ -23,17 +23,9 @@ character::character() //Default constructor
 	
 }
 
-character::character(string Name, string pWeapon, int Rlow, int rHigh, int lvl, int nlvl, int xp, int hp ,int mhp, int armor) //Custom constructor
+character::character(string Name, string weaponName, int rLow, int rHigh, int Health, int maxHealth, int Armor, int Level, int nLevel, int xP)
+	: Creature(Name, weaponName, rLow, rHigh, Health, maxHealth, Armor), mLevel(Level), mExp(xP), mExpNextLvl(nLevel)
 {
-	mName = Name;
-	creatureWeapon.wRange.Rlow = Rlow;
-	creatureWeapon.wRange.RHigh = rHigh;
-	mLevel = lvl;
-	mExpNextLvl = nlvl;
-	mExp = xp;
-	mHealth = hp;
-	mMaxHealth = mhp;
-	mArmor = armor;
 }
 
 void character::createClass()
@@ -200,6 +192,7 @@ bool character::Attack(Creature*Enemy)
 
 		Creature::Attack(Enemy); //Calls inherited function
 		return false;
+		break;
 
 	case 2:
 
@@ -218,14 +211,14 @@ bool character::Attack(Creature*Enemy)
 			return false;
 
 		}
-
+		break;
 	}
 	
 }
 
 void character::experience(mob & mob)
 {
-	int xpReward = mob.mob::xpReward; //Gets the mob's reward for killing it
+	int xpReward = mob.mob::mXpReward; //Gets the mob's reward for killing it
 
 	mExp += xpReward;
 	if (mExp >= mExpNextLvl) //Ask before calling the level up function to minimize computation.

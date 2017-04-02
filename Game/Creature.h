@@ -9,6 +9,8 @@ class Creature
 
 public:
 	
+	Creature();
+	Creature(std::string, std::string, int, int, int, int, int);
 	void TakeDamage(int);
 	void Attack(Creature*);
 

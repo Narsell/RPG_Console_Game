@@ -18,11 +18,11 @@ class mob : public Creature {
 public:
 
 	mob::mob();
-	mob::mob(std::string, std::string, int, int, int, int, int);
+	mob::mob(std::string, std::string, int, int, int, int, int, int);
 
 private:
 
-	int xpReward;
+	int mXpReward;
 	static int MOB_COUNT; 
 	
 };

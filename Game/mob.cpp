@@ -21,19 +21,13 @@ mob::mob()
 	creatureWeapon.wName = "Defautl Weapon";
 	creatureWeapon.wRange.Rlow = 0;
 	creatureWeapon.wRange.RHigh =0;
-	xpReward = 0;
+	mXpReward = 0;
 	++MOB_COUNT;
 }
 
-mob::mob(string name, string wName, int lowR, int highR, int health, int defense, int reward)
+mob::mob(string Name, string weaponName, int rLow, int rHigh, int Health, int maxHealth, int Armor, int Reward)
+	:Creature(Name, weaponName, rLow, rHigh, Health, maxHealth, Armor), mXpReward(Reward)
 {
-	mName = name;
-	creatureWeapon.wName = wName;
-	creatureWeapon.wRange.Rlow = lowR;
-	creatureWeapon.wRange.RHigh = highR;
-	mHealth = health;
-	mArmor = defense;
-	xpReward = reward;
 	++MOB_COUNT;
 }
 
