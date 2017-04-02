@@ -4,17 +4,17 @@
 
 #include "Weapon.h"
 #include "mob.h"
-
+#include "Creature.h"
 #include <string>
 
-class character
+class character : public Creature 
 {
 	friend class mob;
 
 public:
 	
-	character::character(); // <--- default constructor declaration
-	character::character(std::string, std::string,int, int, int, int, int, int, int, int);  // <--- custom constructor declaration 
+	character::character(); 
+	character::character(std::string, std::string,int, int, int, int, int, int, int, int);  
 
 	void createClass();
 	void rest();
@@ -25,28 +25,18 @@ public:
 	void load(std::ifstream&);
 	bool checkData(std::ifstream&);		//Returns true if Data file its empty
 
-	//Combat
-
-	bool mIsDead();
-	void mTakeDamage(int);
-	bool playerAttack(mob&mob);  //Returns true if attempt to run rolls true
+	
 	void experience(mob&mob);
 	void levelUp();
 	void increaseStats();
 	void showStats();
-	int playerHealth();
 	int playerLvl();
 
 private:
 
-	std::string mName;
-	Weapon playerWeapon;
 	int mLevel;
 	int mExpNextLvl;
 	int mExp;
-	int mHealth;
-	int mMaxHealth;
-	int mArmor;
 	
 
 };
