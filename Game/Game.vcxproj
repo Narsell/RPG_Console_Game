@@ -149,10 +149,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Character.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="mob.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="Pupper.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Range.h" />
     <ClInclude Include="stdafx.h" />
@@ -160,11 +161,11 @@
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="mob.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>

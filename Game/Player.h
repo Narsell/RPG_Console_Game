@@ -1,20 +1,19 @@
 #pragma once
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include "Weapon.h"
-#include "mob.h"
+#include "Monster.h"
 #include "Creature.h"
 #include <string>
 
-class character : public Creature 
+class Player : public Creature 
 {
-	friend class mob;
 
 public:
 	
-	character::character(); 
-	character::character(std::string, std::string,int, int, int, int, int, int, int, int);  
+	Player::Player();
+	Player::Player(std::string, std::string,int, int, int, int, int, int, int, int);
 
 	void createClass();
 	void rest();
@@ -27,7 +26,7 @@ public:
 
 	
 	bool Attack(Creature*Enemy);	//Overriden function from creature class. Returns true if attempt to run rolls true
-	void experience(mob&mob);
+	void experience(Monster&mob);
 	void levelUp();
 	void increaseStats();
 	void showStats();
@@ -41,4 +40,4 @@ private:
 
 };
 
-#endif // !CHARACTER_H
+#endif // !PLAYER_H

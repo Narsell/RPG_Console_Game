@@ -1,23 +1,23 @@
 
 #include <iostream>
-#include "Character.h"
+#include "Player.h"
 #include "Map.h"
-#include "mob.h"
+#include "Monster.h"
 #include "Random.h"
 #include <ctime>
 #include <fstream>
-using namespace std;
+
 
 int main()
 {
 	srand(time(0));
 
 	map gameMap;
-	character player;
-	mob* Monster = 0;  //Initialize pointer to null for the sake of clarity.
+	Player player;
+	Monster* Monster = 0;  //Initialize pointer to null for the sake of clarity.
 
-	ofstream outData;
-	ifstream inData("Data.txt");	//saving/loading objects
+	std::ofstream outData;
+	std::ifstream inData("Data.txt");	//saving/loading objects
 
 	if (player.checkData(inData))	//Checking if data file is empty, returns true if empty
 		player.createClass();		//Function that initializes character creation.
@@ -31,17 +31,17 @@ int main()
 	{
 		system("CLS");
 
-		cout << "HEALTH: " << player.Health() << " | POSITION: " << "(" << gameMap.getX() << "," << gameMap.getY() << ")" << " | LEVEL: " << player.playerLvl() << endl;
+		std::cout << "HEALTH: " << player.Health() << " | POSITION: " << "(" << gameMap.getX() << "," << gameMap.getY() << ")" << " | LEVEL: " << player.playerLvl() << std::endl;
 
-		cout << endl << "What would you like to do? " << endl << endl;
+		std::cout << std::endl << "What would you like to do? " << std::endl << std::endl;
 
-		cout << "1). Move" << endl;
-		cout << "2). Detailed Stats" << endl;
-		cout << "3). Rest" << endl;
-		cout << "4). Exit Game" << endl;
+		std::cout << "1). Move" << std::endl;
+		std::cout << "2). Detailed Stats" << std::endl;
+		std::cout << "3). Rest" << std::endl;
+		std::cout << "4). Exit Game" << std::endl;
 
 		int mainInput = 1;
-		cin >> mainInput;
+		std::cin >> mainInput;
 	
 		switch (mainInput)
 		{
@@ -57,8 +57,8 @@ int main()
 				while (true)
 				{
 					system("cls");
-					cout << endl << "\t IN COMBAT" << endl << endl;
-					cout << " Your Health: " << player.Health() << "  |  " << Monster->Name() << "'s Health: " << Monster->Health() << endl << endl;
+					std::cout << std::endl << "\t IN COMBAT" << std::endl << std::endl;
+					std::cout << " Your Health: " << player.Health() << "  |  " << Monster->Name() << "'s Health: " << Monster->Health() << std::endl << std::endl;
 					bool Run = player.Attack(Monster);		//Player decides whether he runs or fights 
 
 					if (Run)
@@ -69,7 +69,7 @@ int main()
 					if (Monster->IsDead())					//Checks if monster died when player attacked 
 					{
 						system("cls");
-						cout << "NICE, YOU DEFEATED THE " << Monster->Name() << endl;
+						std::cout << "NICE, YOU DEFEATED THE " << Monster->Name() << std::endl;
 						system("Pause");
 						player.experience(*Monster);				//Increase experience , victory msg
 						break;
@@ -81,7 +81,7 @@ int main()
 					if (player.IsDead())				//Checks if last mob's attack killed the player
 					{
 						system("cls");
-						cout << "\t\tYOU DED" << endl;	
+						std::cout << "\t\tYOU DED" << std::endl;
 						system("pause");
 						player.save(outData);			//Saves players progress.	
 						gameLoop = false;

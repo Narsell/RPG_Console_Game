@@ -1,8 +1,8 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "Character.h"
-#include "mob.h"
+#include "Player.h"
+#include "Monster.h"
 
 class map {
 
@@ -12,7 +12,7 @@ public:
 	int getX();
 	int getY();
 	void move();
-	mob*getEncounter();
+	Monster*getEncounter();
 
 private:
 
