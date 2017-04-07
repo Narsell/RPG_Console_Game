@@ -15,16 +15,13 @@ bool Creature::IsDead()
 }
 
 Creature::Creature()
+	: mName("Default Name"), mHealth(1), mMaxHealth(1), mArmor(1), mDead(0)
 {
-	mName = "Default Name";
+	
 	creatureWeapon.wName = "Default Weapon";
 	creatureWeapon.wRange.Rlow = 0;
 	creatureWeapon.wRange.RHigh = 1;
-	mHealth = 1;
-	mMaxHealth = 1;
-	mArmor = 1;
-	mDead = false;
-	
+
 }
 
 Creature::Creature(std::string Name, std::string WeaponName, int rLow, int rHigh, int Health, int maxHealth, int Armor)

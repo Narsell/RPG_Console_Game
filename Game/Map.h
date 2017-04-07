@@ -12,7 +12,6 @@ public:
 	int getX();
 	int getY();
 	void move();
-
 	mob*getEncounter();
 
 private:

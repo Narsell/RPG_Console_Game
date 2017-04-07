@@ -8,19 +8,9 @@
 
 using namespace std;
 
-character::character() //Default constructor 
+character::character()
+	:Creature("Default Name", "Default Weapon", 0, 1, 1, 1, 1), mLevel(1), mExp(0), mExpNextLvl(2)
 {
-	mName = "DefaultName";
-	creatureWeapon.wRange.Rlow = 0;
-	creatureWeapon.wRange.RHigh = 0;
-	mLevel = 0;
-	mExpNextLvl = 0;
-	mHealth = 0;
-	mMaxHealth = 0;
-	mArmor = 0;
-	mExp = 0;
-
-	
 }
 
 character::character(string Name, string weaponName, int rLow, int rHigh, int Health, int maxHealth, int Armor, int Level, int nLevel, int xP)
@@ -242,10 +232,10 @@ void character::increaseStats()
 
 	mLevel++;
 	mExpNextLvl = pow(mExpNextLvl, 1.1);
-	creatureWeapon.wRange.Rlow += Random(1, 5);
-	creatureWeapon.wRange.RHigh += Random(1, 5);
-	mMaxHealth += Random(50, 85);
-	mArmor += Random(1, 3);
+	creatureWeapon.wRange.Rlow += Random(1, 3);
+	creatureWeapon.wRange.RHigh += Random(1, 3);
+	mMaxHealth += Random(50, 65);
+	mArmor += Random(1, 2);
 
 	mHealth = mMaxHealth; // Returns Health to new max.
 
