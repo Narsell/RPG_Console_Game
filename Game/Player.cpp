@@ -207,6 +207,11 @@ bool Player::Attack(Creature*Enemy)
 
 void Player::experience(Monster & mob)
 {
+	system("cls");
+	std::cout << "NICE, YOU DEFEATED THE " << mob.Name() << std::endl;
+	system("Pause");
+
+
 	int xpReward = mob.Monster::mXpReward; //Gets the mob's reward for killing it
 
 	mExp += xpReward;

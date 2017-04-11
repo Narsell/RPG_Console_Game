@@ -68,9 +68,6 @@ int main()
 
 					if (Monster->IsDead())					//Checks if monster died when player attacked 
 					{
-						system("cls");
-						std::cout << "NICE, YOU DEFEATED THE " << Monster->Name() << std::endl;
-						system("Pause");
 						player.experience(*Monster);				//Increase experience , victory msg
 						break;
 					}
@@ -83,6 +80,7 @@ int main()
 						system("cls");
 						std::cout << "\t\tYOU DED" << std::endl;
 						system("pause");
+
 						player.save(outData);			//Saves players progress.	
 						gameLoop = false;
 						break;
