@@ -8,12 +8,12 @@
 
 
 Player::Player()
-	:Creature("Default Name", "Default Weapon", 0, 1, 1, 1, 1), mLevel(1), mExp(0), mExpNextLvl(2)
+	:Creature("Default Name", "Default Weapon", 0, 1, 1, 1, 1), mLevel(1), mExp(0), mExpNextLvl(2), mEnemiesDefeated(0)
 {
 }
 
-Player::Player(std::string Name, std::string weaponName, int rLow, int rHigh, int Health, int maxHealth, int Armor, int Level, int nLevel, int xP)
-	: Creature(Name, weaponName, rLow, rHigh, Health, maxHealth, Armor), mLevel(Level), mExp(xP), mExpNextLvl(nLevel)
+Player::Player(std::string Name, std::string weaponName, int rLow, int rHigh, int Health, int maxHealth, int Armor, int Level, int nLevel, int xP, int enemiesDefeated)
+	: Creature(Name, weaponName, rLow, rHigh, Health, maxHealth, Armor), mLevel(Level), mExp(xP), mExpNextLvl(nLevel), mEnemiesDefeated(enemiesDefeated)
 {
 }
 
@@ -37,43 +37,20 @@ void Player::createClass()
 	
 	case 1: //Selected Human Whale
 		std::cout << std::endl << "You've selected Human Whale" << std::endl;
-		mLevel = 1;
-		mExpNextLvl = 1000;
-		mExp = 0;
-		creatureWeapon.wName = "Staff";
-		creatureWeapon.wRange.Rlow = 1;
-		creatureWeapon.wRange.RHigh = 7;
-		mHealth = 750;
-		mMaxHealth = 750;	
-		mArmor = 5;
 
+		*this = Player(mName, "Staff", 1, 7, 750, 750, 5, 1, 1000, 0, 0);
+		
 		break;
 
 	case 2: //Selected Dank Lord
 		std::cout << std::endl << "You've selected Dank Lord" << std::endl;
-		mLevel = 1;
-		mExpNextLvl = 1000;
-		mExp = 0;
-		creatureWeapon.wName = "Blaster";
-		creatureWeapon.wRange.Rlow = 8;
-		creatureWeapon.wRange.RHigh = 15;
-		mHealth = 470;
-		mMaxHealth = 470;	
-		mArmor = 2;
+		*this = Player(mName, "Blaster", 8, 15, 470, 470, 2, 1, 1000, 0, 0);
 
 		break;
 
 	case 3: //Selected Pupper
 		std::cout << std::endl << "You've selected Pupper" << std::endl;
-		mLevel = 1;
-		mExpNextLvl = 1000;
-		mExp = 0;
-		creatureWeapon.wName = "God boye";
-		creatureWeapon.wRange.Rlow = 17;
-		creatureWeapon.wRange.RHigh = 29;
-		mHealth = 350;
-		mMaxHealth = 350;
-		mArmor = 1;
+		*this = Player(mName, "God Boye", 17, 29, 350, 350, 1, 1, 1000, 0, 0);
 
 		break;
 
@@ -209,6 +186,7 @@ void Player::experience(Monster & mob)
 {
 	system("cls");
 	std::cout << "NICE, YOU DEFEATED THE " << mob.Name() << std::endl;
+	mEnemiesDefeated++;
 	system("Pause");
 
 

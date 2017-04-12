@@ -13,7 +13,7 @@ class Player : public Creature
 public:
 	
 	Player::Player();
-	Player::Player(std::string, std::string,int, int, int, int, int, int, int, int);
+	Player::Player(std::string, std::string,int, int, int, int, int, int, int, int, int);
 
 	void createClass();
 	void rest();
@@ -37,6 +37,7 @@ private:
 	int mLevel;
 	int mExpNextLvl;
 	int mExp;
+	int mEnemiesDefeated;
 
 };
 
